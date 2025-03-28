@@ -11,6 +11,10 @@ const AppContainer = styled.div`
   overflow-x: hidden;
   font-family: 'Inter', 'SF Mono', 'Fira Code', monospace;
 
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
   &::before {
     content: '';
     position: fixed;
@@ -41,12 +45,21 @@ const Header = styled.header`
   background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(10px);
   z-index: 100;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 1rem;
+  }
 `
 
 const Nav = styled.nav`
   display: flex;
   justify-content: center;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 `
 
 const NavLink = styled.a`
@@ -57,6 +70,10 @@ const NavLink = styled.a`
 
   &:hover {
     color: #64ffda;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
   }
 `
 
@@ -185,12 +202,20 @@ const Name = styled(motion.h1)`
   font-weight: 700;
   color: #64ffda;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `
 
 const Title = styled(motion.h2)`
   font-size: 2rem;
   color: #e2e8f0;
   margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `
 
 const Description = styled(motion.p)`
@@ -198,12 +223,22 @@ const Description = styled(motion.p)`
   color: #8892b0;
   max-width: 600px;
   margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
 `
 
 const Section = styled.section`
   padding: 6rem 0;
   position: relative;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
 `
 
 const SectionTitle = styled(motion.h2)`
@@ -211,6 +246,11 @@ const SectionTitle = styled(motion.h2)`
   color: #64ffda;
   margin-bottom: 3rem;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 `
 
 const AboutContent = styled.div`
@@ -218,6 +258,11 @@ const AboutContent = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 `
 
 const AboutText = styled.div`
@@ -278,6 +323,11 @@ const SkillsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `
 
 const SkillItem = styled(motion.div)`
@@ -310,6 +360,11 @@ const ProjectGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `
 
 const ProjectCard = styled(motion.div)`
@@ -321,6 +376,10 @@ const ProjectCard = styled(motion.div)`
   z-index: 2;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(100, 255, 218, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 `
 
 const ProjectTitle = styled.h3`
@@ -390,6 +449,11 @@ const CertificationGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `
 
 const CertificationCard = styled(motion.div)`
@@ -428,6 +492,11 @@ const SocialLinks = styled.div`
   display: flex;
   justify-content: center;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 `
 
 const SocialLink = styled.a`
