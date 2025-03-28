@@ -339,7 +339,7 @@ const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   padding: 1rem 2rem;
   background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(10px);
@@ -355,7 +355,7 @@ const Nav = styled.nav`
 const NavLink = styled.a`
   color: #e2e8f0;
   text-decoration: none;
-  font-weight: 500;
+  font-size: 1rem;
   transition: color 0.3s ease;
 
   &:hover {
@@ -365,9 +365,7 @@ const NavLink = styled.a`
 
 const MainContent = styled.main`
   position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
+  z-index: 1;
   padding-top: 4rem;
 `
 
@@ -661,7 +659,7 @@ const SocialLink = styled.a`
   }
 `
 
-const CircuitLines = styled.div`
+const BackgroundGrid = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -778,7 +776,7 @@ function App() {
       </Header>
 
       <HexGrid />
-      <CircuitLines />
+      <BackgroundGrid />
       
       {/* Matrix Rain Effect */}
       {[...Array(8)].map((_, i) => (
