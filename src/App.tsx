@@ -47,7 +47,7 @@ const Header = styled.header`
   z-index: 100;
 
   @media (max-width: 768px) {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.5rem;
   }
 `
 
@@ -57,8 +57,10 @@ const Nav = styled.nav`
   gap: 2rem;
 
   @media (max-width: 768px) {
-    gap: 1rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0 0.5rem;
   }
 `
 
@@ -73,7 +75,8 @@ const NavLink = styled.a`
   }
 
   @media (max-width: 768px) {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
   }
 `
 
@@ -81,6 +84,10 @@ const MainContent = styled.main`
   position: relative;
   z-index: 1;
   padding-top: 4rem;
+
+  @media (max-width: 768px) {
+    padding-top: 5rem;
+  }
 `
 
 const BackgroundGrid = styled.div`
@@ -195,6 +202,13 @@ const HeroSection = styled.section`
   text-align: center;
   position: relative;
   z-index: 2;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    min-height: calc(100vh - 4rem);
+    padding: 2rem 0.5rem;
+    justify-content: flex-start;
+  }
 `
 
 const Name = styled(motion.h1)`
@@ -202,9 +216,12 @@ const Name = styled(motion.h1)`
   font-weight: 700;
   color: #64ffda;
   margin-bottom: 1rem;
+  line-height: 1.2;
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    padding: 0 0.5rem;
   }
 `
 
@@ -212,9 +229,12 @@ const Title = styled(motion.h2)`
   font-size: 2rem;
   color: #e2e8f0;
   margin-bottom: 1.5rem;
+  line-height: 1.3;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
   }
 `
 
@@ -224,10 +244,12 @@ const Description = styled(motion.p)`
   max-width: 600px;
   margin: 0 auto;
   padding: 0 1rem;
+  line-height: 1.6;
 
   @media (max-width: 768px) {
     font-size: 1rem;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
+    max-width: 100%;
   }
 `
 
@@ -258,10 +280,12 @@ const AboutContent = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+  padding: 0 2rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 2rem;
+    padding: 0 1rem;
   }
 `
 
@@ -272,6 +296,15 @@ const AboutText = styled.div`
 
   p {
     margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.6;
+    
+    p {
+      margin-bottom: 1rem;
+    }
   }
 `
 
@@ -284,6 +317,11 @@ const EducationCard = styled(motion.div)`
   z-index: 2;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(100, 255, 218, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 0 0 1rem 0;
+  }
 `
 
 const EducationTitle = styled.h3`
@@ -296,27 +334,47 @@ const EducationDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    gap: 1.2rem;
+  }
 `
 
 const EducationItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    gap: 0.3rem;
+  }
 `
 
 const Degree = styled.h4`
   color: #64ffda;
   font-size: 1.2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `
 
 const School = styled.p`
   color: #e2e8f0;
   font-size: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `
 
 const Date = styled.p`
   color: #8892b0;
   font-size: 0.9rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
 `
 
 const SkillsGrid = styled.div`
