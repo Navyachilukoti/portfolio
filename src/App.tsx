@@ -47,7 +47,7 @@ const Header = styled.header`
   z-index: 100;
 
   @media (max-width: 768px) {
-    padding: 0.75rem 0.5rem;
+    padding: 0.5rem;
   }
 `
 
@@ -55,12 +55,14 @@ const Nav = styled.nav`
   display: flex;
   justify-content: center;
   gap: 2rem;
+  flex-wrap: wrap;
 
   @media (max-width: 768px) {
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0 0.5rem;
+    gap: 0.75rem;
+    justify-content: space-evenly;
+    padding: 0.25rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
   }
 `
 
@@ -69,14 +71,23 @@ const NavLink = styled.a`
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
+  white-space: nowrap;
+  padding: 0.25rem 0.5rem;
 
   &:hover {
     color: #64ffda;
   }
 
   @media (max-width: 768px) {
-    font-size: 0.85rem;
-    padding: 0.3rem 0;
+    font-size: 0.8rem;
+    padding: 0.25rem;
+    min-width: auto;
+    text-align: center;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 0.75rem;
+    padding: 0.2rem;
   }
 `
 
@@ -86,6 +97,10 @@ const MainContent = styled.main`
   padding-top: 4rem;
 
   @media (max-width: 768px) {
+    padding-top: 4.5rem;
+  }
+
+  @media (max-width: 360px) {
     padding-top: 5rem;
   }
 `
