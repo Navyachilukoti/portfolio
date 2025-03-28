@@ -32,309 +32,6 @@ const AppContainer = styled.div`
   }
 `
 
-const GlowingOrb = styled.div`
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, 
-    rgba(100, 255, 218, 0.02) 0%, 
-    rgba(99, 102, 241, 0.02) 50%, 
-    transparent 70%
-  );
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.3;
-  animation: orbFloat 15s ease-in-out infinite;
-
-  @keyframes orbFloat {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-    }
-    50% {
-      transform: translate(30px, -30px) scale(1.1);
-    }
-  }
-`
-
-const TechGrid = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.04;
-  background: 
-    linear-gradient(90deg, rgba(100, 255, 218, 0.02) 1px, transparent 1px),
-    linear-gradient(rgba(100, 255, 218, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
-  transform: perspective(1000px) rotateX(60deg);
-  transform-origin: top;
-  animation: gridPulse 10s ease-in-out infinite;
-
-  @keyframes gridPulse {
-    0%, 100% {
-      opacity: 0.02;
-    }
-    50% {
-      opacity: 0.04;
-    }
-  }
-`
-
-const FloatingParticle = styled.div`
-  position: fixed;
-  width: 1px;
-  height: 1px;
-  background: rgba(100, 255, 218, 0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.15;
-  box-shadow: 0 0 2px rgba(100, 255, 218, 0.2);
-  animation: particleFloat 20s linear infinite;
-
-  @keyframes particleFloat {
-    0% {
-      transform: translateY(100vh) translateX(0) scale(0);
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.15;
-      transform: translateY(50vh) translateX(${() => Math.random() * 100 - 50}px) scale(1);
-    }
-    100% {
-      transform: translateY(-100px) translateX(${() => Math.random() * 100 - 50}px) scale(0);
-      opacity: 0;
-    }
-  }
-`
-
-const BackgroundGlow = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    top: -25%;
-    left: -25%;
-    background: 
-      radial-gradient(circle at center, rgba(100, 255, 218, 0.02) 0%, transparent 50%),
-      radial-gradient(circle at center, rgba(99, 102, 241, 0.02) 0%, transparent 50%);
-    animation: rotate 30s linear infinite;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`
-
-const TechLines = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.1;
-  background: 
-    linear-gradient(45deg, transparent 45%, rgba(100, 255, 218, 0.03) 45%, rgba(100, 255, 218, 0.03) 55%, transparent 55%),
-    linear-gradient(-45deg, transparent 45%, rgba(99, 102, 241, 0.03) 45%, rgba(99, 102, 241, 0.03) 55%, transparent 55%);
-  background-size: 60px 60px;
-  animation: lineFade 10s ease-in-out infinite;
-
-  @keyframes lineFade {
-    0%, 100% {
-      opacity: 0.05;
-    }
-    50% {
-      opacity: 0.1;
-    }
-  }
-`
-
-const TechBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.15;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: 
-      repeating-linear-gradient(60deg, transparent, transparent 10px, rgba(99, 102, 241, 0.1) 10px, rgba(99, 102, 241, 0.1) 20px),
-      repeating-linear-gradient(-60deg, transparent, transparent 10px, rgba(99, 102, 241, 0.1) 10px, rgba(99, 102, 241, 0.1) 20px);
-    animation: rotate 30s linear infinite;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 70%),
-      radial-gradient(circle at 70% 70%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-    animation: pulse 8s ease-in-out infinite;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 0.5;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
-`
-
-const CircuitPattern = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.003;
-  background-image: 
-    linear-gradient(rgba(99, 102, 241, 0.005) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.005) 1px, transparent 1px);
-  background-size: 30px 30px;
-`
-
-const HexagonGrid = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.003;
-  background-image: 
-    linear-gradient(60deg, rgba(99, 102, 241, 0.005) 1px, transparent 1px),
-    linear-gradient(-60deg, rgba(99, 102, 241, 0.005) 1px, transparent 1px);
-  background-size: 30px 30px;
-`
-
-const FloatingElements = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-`
-
-const FloatingElement = styled.div`
-  position: fixed;
-  background: rgba(99, 102, 241, 0.003);
-  border-radius: 50%;
-  animation: float 20s infinite linear;
-  opacity: 0.005;
-  z-index: 1;
-
-  @keyframes float {
-    0% {
-      transform: translateY(100vh) rotate(0deg);
-    }
-    100% {
-      transform: translateY(-100vh) rotate(360deg);
-    }
-  }
-`
-
-const TechDecoration = styled.div`
-  position: fixed;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.003) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-  animation: pulse 4s ease-in-out infinite;
-
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-      opacity: 0.005;
-    }
-    50% {
-      transform: scale(1.2);
-      opacity: 0.01;
-    }
-  }
-`
-
-const TechPattern = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.003;
-  background-image: 
-    linear-gradient(45deg, rgba(99, 102, 241, 0.005) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(99, 102, 241, 0.005) 1px, transparent 1px);
-  background-size: 30px 30px;
-`
-
-const CodeBlock = styled.div`
-  position: fixed;
-  background: rgba(99, 102, 241, 0.003);
-  padding: 1rem;
-  border-radius: 8px;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
-  color: rgba(100, 255, 218, 0.005);
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.005;
-`
-
 const Header = styled.header`
   position: fixed;
   top: 0;
@@ -369,6 +66,109 @@ const MainContent = styled.main`
   padding-top: 4rem;
 `
 
+const BackgroundGrid = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.07;
+  background: 
+    linear-gradient(90deg, rgba(100, 255, 218, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(100, 255, 218, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: perspective(1000px) rotateX(60deg);
+  transform-origin: top;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(to bottom,
+      rgba(100, 255, 218, 0) 0%,
+      rgba(100, 255, 218, 0.1) 50%,
+      rgba(100, 255, 218, 0) 100%);
+    animation: scan 8s linear infinite;
+  }
+
+  @keyframes scan {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+`
+
+const MatrixRain = styled.div`
+  position: fixed;
+  color: rgba(100, 255, 218, 0.15);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  z-index: 0;
+  pointer-events: none;
+  animation: matrixRain 20s linear infinite;
+  opacity: 0.1;
+
+  @keyframes matrixRain {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+`
+
+const TechIcon = styled.div`
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+  animation: float 20s infinite linear;
+  filter: blur(1px);
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: rgba(100, 255, 218, 0.5);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+`
+
+const HexGrid = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' stroke='rgba(100, 255, 218, 0.2)' fill='none'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  animation: pulse 10s ease-in-out infinite;
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.08; }
+    50% { opacity: 0.12; }
+  }
+`
+
 const HeroSection = styled.section`
   min-height: 100vh;
   display: flex;
@@ -378,24 +178,6 @@ const HeroSection = styled.section`
   text-align: center;
   position: relative;
   z-index: 2;
-`
-
-const HeroDecoration = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-
-  svg {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    fill: rgba(100, 255, 218, 0.1);
-    opacity: 0.2;
-  }
 `
 
 const Name = styled(motion.h1)`
@@ -659,109 +441,6 @@ const SocialLink = styled.a`
   }
 `
 
-const BackgroundGrid = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.07;
-  background: 
-    linear-gradient(90deg, rgba(100, 255, 218, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(100, 255, 218, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  transform: perspective(1000px) rotateX(60deg);
-  transform-origin: top;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200%;
-    background: linear-gradient(to bottom,
-      rgba(100, 255, 218, 0) 0%,
-      rgba(100, 255, 218, 0.1) 50%,
-      rgba(100, 255, 218, 0) 100%);
-    animation: scan 8s linear infinite;
-  }
-
-  @keyframes scan {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
-  }
-`
-
-const MatrixRain = styled.div`
-  position: fixed;
-  color: rgba(100, 255, 218, 0.15);
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  line-height: 1;
-  white-space: nowrap;
-  z-index: 0;
-  pointer-events: none;
-  animation: matrixRain 20s linear infinite;
-  opacity: 0.1;
-
-  @keyframes matrixRain {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-  }
-`
-
-const TechIcon = styled.div`
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
-  animation: float 20s infinite linear;
-  filter: blur(1px);
-
-  svg {
-    width: 100%;
-    height: 100%;
-    fill: rgba(100, 255, 218, 0.5);
-  }
-
-  @keyframes float {
-    0% {
-      transform: translateY(100vh) rotate(0deg);
-      opacity: 0;
-    }
-    10% { opacity: 0.15; }
-    90% { opacity: 0.15; }
-    100% {
-      transform: translateY(-100vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-`
-
-const HexGrid = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.1;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' stroke='rgba(100, 255, 218, 0.2)' fill='none'/%3E%3C/svg%3E");
-  background-size: 60px 60px;
-  animation: pulse 10s ease-in-out infinite;
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.08; }
-    50% { opacity: 0.12; }
-  }
-`
-
 function App() {
   return (
     <AppContainer>
@@ -801,8 +480,8 @@ function App() {
           }}
         >
           <svg viewBox="0 0 24 24">
-            {i % 4 === 0 && <path d="M12 1.5c-2.363 0-4.5.86-6.161 2.38l-1.346-1.346A.75.75 0 0 0 3 3.5v4a.75.75 0 0 0 .75.75h4a.75.75 0 0 0 .53-1.281L6.927 5.616A6.5 6.5 0 0 1 12 3.5a6.5 6.5 0 1 1-6.5 6.5.75.75 0 0 0-1.5 0A8 8 0 1 0 12 1.5z"/>}
-            {i % 4 === 1 && <path d="M3 3h18v18H3V3zm16.5 1.5H4.5v15h15v-15zM6.75 6.75h10.5v1.5H6.75v-1.5zm0 3h10.5v1.5H6.75v-1.5z"/>}
+            {i % 4 === 0 && <path d="M12 1.5c-2.363 0-4.5.86-6.161 2.38l-1.346-1.346A.75.75 0 0 0 3 3.5v4a.75.75 0 0 0 .75.75h4a.75.75 0 0 0 .53-1.281L6.927 5.616A6.5 6.5 0 0 1 12 3.5a6.5 6.5 0 1 1-6.5 6.5.75.75 0 0 0-1.5 0A8 8 0 1 0 12 1.5zm-.657 10.907a.75.75 0 0 0-1.061 0l-2.829 2.828a.75.75 0 0 0 1.061 1.061L11 13.81V20a.75.75 0 0 0 1.5 0v-6.19l2.486 2.486a.75.75 0 0 0 1.061-1.061l-2.829-2.828a.75.75 0 0 0-1.061 0z" />}
+            {i % 4 === 1 && <path d="M3 3h18v18H3V3zm16.5 1.5H4.5v15h15v-15zM6.75 6.75h10.5v1.5H6.75v-1.5zm0 3h10.5v1.5H6.75v-1.5zm0 3h10.5v1.5H6.75v-1.5z"/>}
             {i % 4 === 2 && <path d="M20.205 7.007c-.213-.21-.687-.363-1.426-.363h-7.38v2.27h4.233c.405 0 .704.09.897.273.21.186.315.45.315.788 0 .34-.106.606-.315.79-.193.183-.492.274-.896.274h-4.234v2.273h4.233c.405 0 .704.088.897.27.21.186.315.45.315.79 0 .34-.106.606-.315.79-.193.183-.492.273-.896.273h-4.234l.002 2.274h7.38c.74 0 1.213-.153 1.426-.362.21-.21.315-.474.315-.79 0-.317-.106-.58-.315-.79z"/>}
             {i % 4 === 3 && <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>}
           </svg>
