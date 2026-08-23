@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Navya Sri Chilukoti - Tagging &amp; Reporting Analyst</title>
+<meta name="description" content="Navya Sri Chilukoti - Programmer Analyst Trainee at Cognizant. Digital analytics implementation and the data behind it: Tealium, GA4, Adobe Analytics, Snowflake, SQL, Tableau." />
+<meta name="author" content="Navya Sri Chilukoti" />
+<meta property="og:title" content="Navya Sri Chilukoti - Tagging &amp; Reporting Analyst" />
+<meta property="og:description" content="Digital analytics implementation and the data behind it. Tealium, GA4, Snowflake, SQL, Tableau." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#F5F6FA" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --paper:#F5F6FA;
+  --panel:#FFFFFF;
+  --ink:#141731;
+  --ink-2:#1D2145;
+  --ink-soft:#5A5F7C;
+  --line:#DFE2EC;
+
+  /* readable hue (text, rules) + wash triple (translucent fills) */
+  --rose:#D0246B;    --rose-w:255,107,157;
+  --violet:#6B34E0;  --violet-w:167,139,250;
+  --sky:#0F72C9;     --sky-w:79,163,247;
+  --amber:#A96505;   --amber-w:255,180,84;
+  --teal:#0C8C6C;    --teal-w:74,222,176;
+
+  --sec:var(--teal); --sec-w:var(--teal-w);
+
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --sans:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+
+  --gut:clamp(16px,4vw,64px);
+  --maxw:1180px;
+}
+
+*,*:before,*:after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(to right,rgba(20,23,49,.03) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(20,23,49,.03) 1px,transparent 1px);
+  background-size:30px 30px;
+  font-family:var(--sans);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a{color:inherit}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:99;background:var(--ink);color:#fff;padding:12px 18px;font-family:var(--mono);font-size:.8rem;text-decoration:none}
+.skip:focus{left:8px;top:8px}
+:focus-visible{outline:2px solid var(--sec);outline-offset:3px;border-radius:2px}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+
+#meter{
+  position:fixed;top:0;left:0;height:2px;width:0%;z-index:95;
+  background:linear-gradient(90deg,var(--rose),var(--violet),var(--sky),var(--amber),var(--teal));
+  transition:width .08s linear;
+}
+
+.eyebrow{font-family:var(--mono);font-size:clamp(.62rem,1.2vw,.68rem);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+.eyebrow .tick{color:var(--sec)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,246,250,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.nav-left{display:flex;align-items:center;gap:12px;min-width:0}
+.brand{font-family:var(--display);font-weight:800;font-size:clamp(.92rem,2vw,1.02rem);letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+.pill{
+  display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);border:1px solid rgba(var(--teal-w),.5);
+  background:linear-gradient(120deg,rgba(var(--teal-w),.20),rgba(var(--teal-w),.06));
+  padding:4px 10px;border-radius:999px;
+}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:beat 2.4s ease-in-out infinite}
+@keyframes beat{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.32;transform:scale(.8)}}
+.nav-links{display:flex;gap:clamp(12px,2vw,24px);overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-block:4px}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  flex:0 0 auto;font-family:var(--mono);font-size:.71rem;letter-spacing:.09em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink-soft);padding:6px 2px;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.nav-links a:nth-child(1):hover{color:var(--teal);border-bottom-color:var(--teal)}
+.nav-links a:nth-child(2):hover{color:var(--sky);border-bottom-color:var(--sky)}
+.nav-links a:nth-child(3):hover{color:var(--violet);border-bottom-color:var(--violet)}
+.nav-links a:nth-child(4):hover{color:var(--amber);border-bottom-color:var(--amber)}
+.nav-links a:nth-child(5):hover{color:var(--rose);border-bottom-color:var(--rose)}
+
+/* ---------- bands ---------- */
+.band{padding-block:clamp(40px,8vw,104px);position:relative}
+.band + .band{border-top:1px solid var(--line)}
+#pipe-band{--sec:var(--rose);--sec-w:var(--rose-w)}
+#work{--sec:var(--teal);--sec-w:var(--teal-w)}
+#experience{--sec:var(--sky);--sec-w:var(--sky-w)}
+#projects{--sec:var(--violet);--sec-w:var(--violet-w)}
+#toolkit{--sec:var(--amber);--sec-w:var(--amber-w)}
+#education{--sec:var(--rose);--sec-w:var(--rose-w)}
+
+.shead{display:flex;align-items:center;gap:12px;margin-bottom:clamp(24px,4vw,46px)}
+.shead .rail{flex:1;height:1px;background:linear-gradient(90deg,var(--sec),transparent)}
+h2.stitle{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,3.6vw,2.3rem);letter-spacing:-.03em;line-height:1.1;margin:0}
+.idx{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4vw,2.9rem);line-height:1;margin:0;color:var(--sec);opacity:.4}
+@supports (-webkit-text-stroke:1px #000){
+  .idx{color:transparent;-webkit-text-stroke:1.4px var(--sec);opacity:.62}
+}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(30px,6vw,80px);padding-bottom:clamp(40px,6vw,78px);position:relative;overflow:hidden}
+.aurora{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.aurora i{position:absolute;display:block;border-radius:50%;filter:blur(72px)}
+.aurora i:nth-child(1){width:44vw;aspect-ratio:1;background:rgba(var(--violet-w),.34);right:-8vw;top:-16vw}
+.aurora i:nth-child(2){width:32vw;aspect-ratio:1;background:rgba(var(--rose-w),.26);right:16vw;top:15vw}
+.aurora i:nth-child(3){width:30vw;aspect-ratio:1;background:rgba(var(--sky-w),.22);left:-10vw;bottom:-14vw}
+.hero > .hero-grid,.hero > .facts{position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,54px);align-items:start}
+@media (min-width:960px){.hero-grid{grid-template-columns:1.08fr .92fr;gap:clamp(36px,4.5vw,60px)}}
+
+.hero-name{font-family:var(--display);font-weight:600;font-size:clamp(.95rem,2vw,1.24rem);letter-spacing:.01em;margin:12px 0 clamp(12px,2.5vw,22px);color:var(--ink-soft)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.85rem,5.5vw,3.9rem);line-height:1.05;letter-spacing:-.035em;margin:0;max-width:18ch}
+h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,var(--rose),var(--violet) 48%,var(--sky));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.lede{margin:clamp(16px,2.8vw,26px) 0 0;font-size:clamp(.95rem,1.4vw,1.08rem);color:var(--ink-soft);max-width:52ch}
+.lede strong{color:var(--ink);font-weight:600}
+
+.route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:clamp(20px,3vw,32px) 0 0;padding:0;list-style:none;font-family:var(--mono);font-size:.7rem}
+.route li{display:flex;align-items:center;gap:8px;color:var(--ink-soft)}
+.route li b{color:var(--ink);font-weight:500}
+.route li::after{content:"\2192";color:var(--line)}
+.route li:last-child::after{content:""}
+
+/* ---------- console ---------- */
+.console{position:relative;background:var(--ink);border-radius:12px;overflow:hidden;box-shadow:0 30px 60px -34px rgba(20,23,49,.6);width:100%}
+.console::before{
+  content:"";position:absolute;inset:0;padding:1px;border-radius:12px;pointer-events:none;
+  background:linear-gradient(150deg,rgba(var(--violet-w),.9),rgba(255,255,255,.12) 44%,rgba(var(--teal-w),.9));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+.con-bar{display:flex;align-items:center;gap:9px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.con-bar b{font-family:var(--mono);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:400}
+.con-bar .lamp{width:7px;height:7px;border-radius:50%;background:#4ADEB0;box-shadow:0 0 12px #4ADEB0;animation:beat 2.6s ease-in-out infinite}
+.code{margin:0;padding:16px;font-family:var(--mono);font-size:clamp(.68rem,1.2vw,.755rem);line-height:1.8;color:rgba(255,255,255,.9);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.code .k{color:#7CC7F5}
+.code .s{color:#5FD8AF}
+.code .n{color:#FFC06B}
+.code .f{color:#B79CFF}
+.code .c{color:rgba(255,255,255,.32)}
+.steps{list-style:none;margin:0;padding:12px 16px;border-top:1px solid rgba(255,255,255,.1)}
+.steps li{font-family:var(--mono);font-size:.68rem;color:rgba(255,255,255,.3);display:flex;gap:8px;align-items:center;padding-block:4px}
+.steps li::before{content:"\25C7"}
+
+/* ---------- wash ---------- */
+.wash{
+  background:
+    linear-gradient(152deg,rgba(var(--hw),.20),rgba(var(--hw),.05) 46%,rgba(255,255,255,.5) 100%),
+    var(--panel);
+  border:1px solid rgba(var(--hw),.34);
+}
+
+/* ---------- facts ---------- */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:clamp(30px,4vw,58px)}
+.fact{padding:14px 16px;border-radius:10px}
+.fact dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px;color:var(--h)}
+.fact dd{margin:0;font-weight:600;font-size:.9rem;line-height:1.35;word-break:break-word}
+.fact:nth-child(1){--h:var(--teal);--hw:var(--teal-w)}
+.fact:nth-child(2){--h:var(--sky);--hw:var(--sky-w)}
+.fact:nth-child(3){--h:var(--violet);--hw:var(--violet-w)}
+.fact:nth-child(4){--h:var(--amber);--hw:var(--amber-w)}
+.fact:nth-child(5){--h:var(--rose);--hw:var(--rose-w)}
+
+/* ---------- ticker ---------- */
+.ticker{border-block:1px solid var(--line);background:var(--panel);overflow:hidden;padding-block:12px}
+.ticker-row{display:flex;width:max-content;animation:slide 42s linear infinite}
+.ticker:hover .ticker-row{animation-play-state:paused}
+.ticker-row span{display:flex;align-items:center;gap:10px;padding-inline:14px;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);white-space:nowrap}
+.ticker-row span::before{content:"";width:6px;height:6px;border-radius:50%;flex:0 0 auto}
+.ticker-row span:nth-child(5n+1)::before{background:var(--rose)}
+.ticker-row span:nth-child(5n+2)::before{background:var(--violet)}
+.ticker-row span:nth-child(5n+3)::before{background:var(--sky)}
+.ticker-row span:nth-child(5n+4)::before{background:var(--amber)}
+.ticker-row span:nth-child(5n+5)::before{background:var(--teal)}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- pipeline ---------- */
+.pipe-cap{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.pipe{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.pipe::before{
+  content:"";position:absolute;left:6%;right:6%;top:9px;height:2px;z-index:0;
+  background:linear-gradient(90deg,var(--rose),var(--violet),var(--sky),var(--amber),var(--teal));
+  opacity:.5;
+}
+.pulse{position:absolute;top:3px;left:6%;width:14px;height:14px;border-radius:50%;background:var(--panel);z-index:3;animation:run 7s cubic-bezier(.55,0,.45,1) infinite}
+@keyframes run{
+  0%{left:6%;opacity:0;box-shadow:0 0 0 3px rgba(var(--rose-w),.55)}
+  6%{opacity:1}
+  25%{box-shadow:0 0 0 3px rgba(var(--violet-w),.6)}
+  50%{box-shadow:0 0 0 3px rgba(var(--sky-w),.6)}
+  75%{box-shadow:0 0 0 3px rgba(var(--amber-w),.7)}
+  94%{opacity:1;box-shadow:0 0 0 3px rgba(var(--teal-w),.7)}
+  100%{left:calc(94% - 14px);opacity:0}
+}
+.node{position:relative;z-index:1;padding-top:28px;transition:transform .28s}
+.node::before{
+  content:"";position:absolute;top:2px;left:0;width:16px;height:16px;border-radius:50%;
+  background:var(--panel);border:2px solid var(--h);transition:background .28s,box-shadow .28s;
+}
+.node:hover{transform:translateY(-4px)}
+.node:hover::before{background:var(--h);box-shadow:0 0 0 5px rgba(var(--hw),.22)}
+.node:nth-child(2){--h:var(--rose);--hw:var(--rose-w)}
+.node:nth-child(3){--h:var(--violet);--hw:var(--violet-w)}
+.node:nth-child(4){--h:var(--sky);--hw:var(--sky-w)}
+.node:nth-child(5){--h:var(--amber);--hw:var(--amber-w)}
+.node:nth-child(6){--h:var(--teal);--hw:var(--teal-w)}
+.node b{display:block;font-family:var(--sans);font-weight:600;font-size:clamp(.8rem,1.3vw,.96rem);line-height:1.25}
+.node span{display:block;font-family:var(--mono);font-size:.65rem;line-height:1.5;color:var(--ink-soft);margin-top:6px;word-break:break-word}
+
+/* ---------- current work ---------- */
+.now{display:grid;grid-template-columns:1fr;gap:clamp(16px,2.4vw,24px)}
+@media (min-width:900px){.now{grid-template-columns:1.35fr .95fr}}
+.card{--hw:var(--sec-w);position:relative;border-radius:12px;padding:clamp(18px,3vw,34px);overflow:hidden}
+.card h3{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:clamp(1.1rem,2vw,1.44rem);margin:10px 0 0;line-height:1.2}
+.doing{list-style:none;margin:18px 0 0;padding:0}
+.doing li{position:relative;padding-left:22px;margin-bottom:12px;font-size:clamp(.88rem,1.2vw,.955rem);color:var(--ink-soft)}
+.doing li:last-child{margin-bottom:0}
+.doing li::before{content:"";position:absolute;left:0;top:.65em;width:8px;height:2px;border-radius:2px;background:var(--sec)}
+.doing li strong{color:var(--ink);font-weight:600}
+
+.stack{--hw:var(--violet-w);border-radius:12px;padding:clamp(18px,3vw,30px)}
+.stack h4{font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);font-weight:400;margin:0 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.stack h4 + .chips{margin-bottom:20px}
+.chips li{
+  font-family:var(--mono);font-size:.7rem;padding:5px 9px;border-radius:6px;
+  background:rgba(255,255,255,.85);border:1px solid rgba(20,23,49,.12);color:var(--ink);
+  transition:border-color .18s,color .18s,transform .18s,background .18s;
+}
+.chips li:hover{border-color:var(--h,var(--sec));color:var(--h,var(--sec));background:#fff;transform:translateY(-2px)}
+
+/* ---------- timeline ---------- */
+.tl{list-style:none;margin:0;padding:0}
+.tl > li{display:grid;grid-template-columns:1fr;gap:6px 28px;padding:clamp(18px,2.8vw,30px) 0;border-top:1px solid var(--line)}
+.tl > li:first-child{border-top:0;padding-top:0}
+@media (min-width:760px){.tl > li{grid-template-columns:190px 1fr}}
+.when{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);padding-top:2px}
+.when .live{color:var(--sec)}
+.role{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:clamp(1.05rem,2vw,1.36rem);margin:0;line-height:1.2}
+.org{font-family:var(--mono);font-size:.74rem;color:var(--sec);margin:6px 0 0}
+.tl p.body{margin:12px 0 0;color:var(--ink-soft);max-width:62ch;font-size:clamp(.88rem,1.2vw,.955rem)}
+.tl .chips{margin-top:14px}
+
+/* ---------- projects ---------- */
+.projects{display:grid;grid-template-columns:1fr;gap:clamp(14px,2vw,22px)}
+@media (min-width:640px){.projects{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.projects{grid-template-columns:repeat(3,1fr)}}
+.proj{
+  display:flex;flex-direction:column;position:relative;overflow:hidden;border-radius:12px;
+  padding:clamp(18px,2.4vw,28px);text-decoration:none;
+  transition:transform .28s,border-color .28s,box-shadow .28s;
+}
+.proj:nth-child(1){--h:var(--violet);--hw:var(--violet-w)}
+.proj:nth-child(2){--h:var(--sky);--hw:var(--sky-w)}
+.proj:nth-child(3){--h:var(--rose);--hw:var(--rose-w)}
+.proj:hover{transform:translateY(-4px);border-color:var(--h);box-shadow:0 20px 36px -26px rgba(var(--hw),.85)}
+.proj .tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--h);margin:0 0 10px}
+.proj h3{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:1.08rem;line-height:1.25;margin:0}
+.proj p{color:var(--ink-soft);font-size:.9rem;margin:10px 0 0}
+.proj .chips{margin-top:16px}
+.proj .go{margin-top:auto;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;color:var(--ink-soft)}
+
+/* ---------- toolkit ---------- */
+.kit{display:grid;grid-template-columns:1fr;gap:clamp(12px,1.6vw,16px)}
+@media (min-width:600px){.kit{grid-template-columns:repeat(2,1fr)}}
+.kit-cell{border-radius:12px;padding:clamp(18px,2.5vw,30px)}
+.kit-cell h3{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:1.05rem;margin:0 0 4px}
+.kit-cell > p{font-family:var(--mono);font-size:.66rem;color:var(--h);margin:0 0 14px;letter-spacing:.04em}
+.kit-cell:nth-child(1){--h:var(--teal);--hw:var(--teal-w)}
+.kit-cell:nth-child(2){--h:var(--rose);--hw:var(--rose-w)}
+.kit-cell:nth-child(3){--h:var(--sky);--hw:var(--sky-w)}
+.kit-cell:nth-child(4){--h:var(--violet);--hw:var(--violet-w)}
+.kit-cell:nth-child(5){--h:var(--amber);--hw:var(--amber-w)}
+.kit-cell:nth-child(6){--h:var(--teal);--hw:var(--teal-w)}
+
+/* ---------- education ---------- */
+.edu-grid{display:grid;grid-template-columns:1fr;gap:clamp(20px,3vw,40px)}
+@media (min-width:860px){.edu-grid{grid-template-columns:1.25fr .75fr}}
+.edu{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.edu li{--hw:var(--rose-w);border-radius:11px;padding:16px 18px}
+.edu li:nth-child(2){--hw:var(--violet-w)}
+.edu li:nth-child(3){--hw:var(--sky-w)}
+.edu .deg{font-weight:600;font-size:.96rem;margin:0}
+.edu .place{font-size:.88rem;color:var(--ink-soft);margin:4px 0 0}
+.edu .meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--ink-soft);margin:6px 0 0}
+.certs{display:grid;gap:10px;align-content:start}
+.cert{border-radius:11px;padding:16px 18px}
+.cert:nth-child(1){--hw:var(--sky-w)}
+.cert:nth-child(2){--hw:var(--amber-w)}
+.cert .issuer{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;margin:0 0 6px}
+.cert p.name{margin:0;font-weight:600;font-size:.92rem;line-height:1.3}
+
+/* ---------- contact ---------- */
+#contact{overflow:hidden;border-top:1px solid var(--line)}
+#contact p.body{color:var(--ink-soft);max-width:52ch;margin:0 0 clamp(24px,4vw,42px);font-size:clamp(.92rem,1.3vw,1.01rem)}
+.links{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.links{grid-template-columns:repeat(3,1fr)}}
+.links a{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border-radius:12px;padding:18px 20px;text-decoration:none;
+  transition:transform .24s,box-shadow .24s,border-color .24s;min-height:72px;
+}
+.links a:nth-child(1){--h:var(--teal);--hw:var(--teal-w)}
+.links a:nth-child(2){--h:var(--sky);--hw:var(--sky-w)}
+.links a:nth-child(3){--h:var(--violet);--hw:var(--violet-w)}
+.links a:hover{transform:translateY(-3px);border-color:var(--h);box-shadow:0 16px 32px -24px rgba(var(--hw),.9)}
+.links .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--h)}
+.links .val{font-weight:600;font-size:.88rem;word-break:break-all;display:block;margin-top:4px}
+.links .arrow{font-family:var(--mono);flex:0 0 auto;color:var(--h);transition:transform .24s}
+
+footer{padding-block:24px;border-top:1px solid var(--line)}
+.foot-in{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;color:var(--ink-soft)}
+
+.rise{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rise.in{opacity:1;transform:none}
+
+/* ---------- MEDIA QUERIES FOR SMALL SCREENS ---------- */
+@media (max-width:719px){
+  .pill{display:none}
+  .pipe{grid-template-columns:1fr;gap:0}
+  .pipe::before{left:7px;right:auto;top:8px;bottom:18px;height:auto;width:2px;background:linear-gradient(180deg,var(--rose),var(--violet),var(--sky),var(--amber),var(--teal))}
+  .node{padding:0 0 20px 28px}
+  .node:last-child{padding-bottom:0}
+  .node::before{top:1px;left:0}
+  .node span{margin-top:3px}
+  .pulse{left:1px;top:0;animation:run-v 7s cubic-bezier(.55,0,.45,1) infinite}
+  @keyframes run-v{
+    0%{top:0;opacity:0;box-shadow:0 0 0 3px rgba(var(--rose-w),.55)}
+    6%{opacity:1}50%{box-shadow:0 0 0 3px rgba(var(--sky-w),.6)}
+    94%{opacity:1;box-shadow:0 0 0 3px rgba(var(--teal-w),.7)}
+    100%{top:calc(100% - 24px);opacity:0}
+  }
+}
+
+@media (max-width:480px){
+  .nav-in{padding-block:10px}
+  .nav-links{gap:12px}
+  .nav-links a{font-size:.65rem}
+  .facts{grid-template-columns:1fr 1fr}
+  .fact:last-child{grid-column:span 2}
+  .con-bar b{font-size:.58rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .pulse,.steps li,.lamp,.pill i,.ticker-row{animation:none}
+  .steps li{color:rgba(255,255,255,.62)}
+  .rise{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  #meter{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div id="meter" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <div class="nav-left">
+      <a class="brand" href="#top">Navya Sri Chilukoti</a>
+      <span class="pill"><i aria-hidden="true"></i>Open to roles</span>
+    </div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#education">Education</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="wrap hero" id="top">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow rise"><span class="tick">&#9679;</span> Programmer Analyst Trainee &amp;&middot;&amp;nbsp; Cognizant</p>
+        <p class="hero-name rise">Tagging &amp; Reporting Analyst</p>
+        <h1 class="rise">Every number on a dashboard starts with a tag that <em>fired correctly.</em></h1>
+        <p class="lede rise">I work at the seam between analytics implementation and the data behind it &dash; <strong>defining what gets tracked, proving it landed right, and turning it into reporting people can decide on.</strong></p>
+        <ul class="route rise">
+          <li><b>Hyderabad</b></li>
+          <li>trained in <b>Chennai</b></li>
+          <li>deployed in <b>Kochi</b></li>
+        </ul>
+      </div>
+
+      <div class="console rise" role="img" aria-label="Example tracking call: an add-to-cart event sent through Tealium, then reconciled in Snowflake and reported in Tableau.">
+        <div class="con-bar">
+          <span class="lamp" aria-hidden="true"></span>
+          <b>event &dash; sandbox</b>
+        </div>
+        <pre class="code" aria-hidden="true"><span class="f">utag.link</span>({
+  <span class="k">event_name</span>  : <span class="s">"add_to_cart"</span>,
+  <span class="k">page_type</span>   : <span class="s">"product"</span>,
+  <span class="k">product_id</span>  : <span class="s">"SKU-48219"</span>,
+  <span class="k">quantity</span>    : <span class="n">1</span>,
+  <span class="k">value</span>       : <span class="n">1499.00</span>
+});
+<span class="c">// spec v2.4 &dash; awaiting QA sign-off</span></pre>
+        <ul class="steps" aria-hidden="true">
+          <li>tag fires in sandbox</li>
+          <li>row reconciled in Snowflake</li>
+          <li>metric live in Tableau</li>
+        </ul>
+      </div>
+    </div>
+
+    <dl class="facts rise">
+      <div class="fact wash"><dt>Role</dt><dd>Programmer Analyst Trainee</dd></div>
+      <div class="fact wash"><dt>Company</dt><dd>Cognizant</dd></div>
+      <div class="fact wash"><dt>With Cognizant</dt><dd><span id="tenure">Since Nov 2025</span></dd></div>
+      <div class="fact wash"><dt>Based in</dt><dd>Kochi, Kerala</dd></div>
+      <div class="fact wash"><dt>From</dt><dd>Hyderabad, Telangana</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-row">
+      <span>Tealium iQ</span><span>Snowflake</span><span>SQL</span><span>Google Analytics 4</span><span>Tableau</span>
+      <span>Looker Studio</span><span>Python</span><span>PySpark</span><span>Adobe Analytics</span><span>Google Tag Manager</span>
+      <span>Adobe Launch</span><span>ETL testing</span><span>Data warehousing</span><span>Agile</span><span>GitHub Copilot</span>
+      <span>Tealium iQ</span><span>Snowflake</span><span>SQL</span><span>Google Analytics 4</span><span>Tableau</span>
+      <span>Looker Studio</span><span>Python</span><span>PySpark</span><span>Adobe Analytics</span><span>Google Tag Manager</span>
+      <span>Adobe Launch</span><span>ETL testing</span><span>Data warehousing</span><span>Agile</span><span>GitHub Copilot</span>
+    </div>
+  </div>
+
+  <!-- ============ PIPELINE ============ -->
+  <section class="band" id="pipe-band">
+    <div class="wrap">
+      <div class="pipe-cap rise">
+        <p class="eyebrow">The path I work along</p>
+        <p class="eyebrow">Interaction &rarr; Insight</p>
+      </div>
+      <div class="pipe rise" role="list" aria-label="From user interaction to reporting">
+        <span class="pulse" aria-hidden="true"></span>
+        <div class="node" role="listitem"><b>Interaction</b><span>click &middot; view &middot; form &middot; purchase</span></div>
+        <div class="node" role="listitem"><b>Data layer</b><span>events &middot; variables &middot; spec</span></div>
+        <div class="node" role="listitem"><b>Tag manager</b><span>Tealium iQ</span></div>
+        <div class="node" role="listitem"><b>Warehouse</b><span>Snowflake &middot; SQL</span></div>
+        <div class="node" role="listitem"><b>Reporting</b><span>Tableau &middot; Looker Studio &middot; GA4</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CURRENT WORK ============ -->
+  <section class="band" id="work">
+    <div class="wrap">
+      <div class="shead rise">
+        <h2 class="stitle">On my desk right now</h2>
+        <span class="rail" aria-hidden="true"></span>
+        <p class="idx">01</p>
+      </div>
+
+      <div class="now">
+        <div class="card wash rise">
+          <p class="eyebrow"><span class="tick">&#9679;</span> Live project</p>
+          <h3>Tagging &amp; Reporting Analyst</h3>
+          <ul class="doing">
+            <li><strong>Build and QA tag configurations</strong> in the Tealium sandbox before anything reaches a production environment.</li>
+            <li><strong>Validate events, variables and data layer values</strong> against the tracking specification, and log what doesn't match.</li>
+            <li><strong>Query Snowflake with SQL</strong> to reconcile what the tags sent against what the source data says happened.</li>
+            <li><strong>Maintain reporting</strong> in Tableau, Looker Studio and GA4 so stakeholders read the same numbers I signed off.</li>
+            <li><strong>Document requirements and hand off changes</strong> through Agile ceremonies &dash; refinement, sprint reviews, release notes.</li>
+          </ul>
+        </div>
+
+        <aside class="stack wash rise">
+          <h4>Working stack</h4>
+          <ul class="chips">
+            <li>Tealium sandbox</li><li>Snowflake</li><li>Google Analytics&nbsp;4</li>
+            <li>Looker Studio</li><li>Tableau</li><li>SQL</li>
+          </ul>
+          <h4>How I check my work</h4>
+          <ul class="chips">
+            <li>Tag debugger</li><li>Data layer inspection</li>
+            <li>Source-to-report reconciliation</li><li>Regression checks</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="band" id="experience">
+    <div class="wrap">
+      <div class="shead rise">
+        <h2 class="stitle">Experience</h2>
+        <span class="rail" aria-hidden="true"></span>
+        <p class="idx">02</p>
+      </div>
+
+      <ol class="tl">
+        <li class="rise">
+          <p class="when"><span class="live">&#9679;</span> Nov 2025 &dash; Present</p>
+          <div>
+            <h3 class="role">Programmer Analyst Trainee</h3>
+            <p class="org">Cognizant &middot; trained in Chennai, deployed in Kochi</p>
+            <p class="body">Joined as a trainee in Chennai, then moved onto a client analytics engagement in Kochi as a tagging and reporting analyst. Day to day: implementing and testing analytics tracking, validating the data it produces against the warehouse, and maintaining the reporting layer on top. Alongside the project I've been building depth in SQL, Python and PySpark for data warehousing and ETL validation work.</p>
+            <ul class="chips">
+              <li>Tealium</li><li>Snowflake</li><li>SQL</li><li>GA4</li>
+              <li>Tableau</li><li>Looker Studio</li><li>ETL testing</li><li>Agile</li>
+            </ul>
+          </div>
+        </li>
+        <li class="rise">
+          <p class="when">Jun 2024 &dash; Jul 2024</p>
+          <div>
+            <h3 class="role">AI&dash;ML Intern</h3>
+            <p class="org">CSRBOX &middot; IBM SkillsBuild</p>
+            <p class="body">Built machine learning models on sensor data for operational decision support, and simulated real-time data flows in a cloud environment. Worked in Agile sprints with regular code reviews.</p>
+            <ul class="chips">
+              <li>Python</li><li>Machine learning</li><li>Sensor data</li>
+            </ul>
+          </div>
+        </li>
+        <li class="rise">
+          <p class="when">Feb 2024 &dash; Apr 2024</p>
+          <div>
+            <h3 class="role">Full Stack Developer Intern</h3>
+            <p class="org">Edunet Foundation</p>
+            <p class="body">Developed a Django news aggregator combining third-party APIs with web scraping, and delivered a responsive front end.</p>
+            <ul class="chips">
+              <li>Django</li><li>Python</li><li>REST APIs</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="band" id="projects">
+    <div class="wrap">
+      <div class="shead rise">
+        <h2 class="stitle">Projects</h2>
+        <span class="rail" aria-hidden="true"></span>
+        <p class="idx">03</p>
+      </div>
+
+      <div class="projects">
+        <a class="proj wash rise" href="https://github.com/Navyachilukoti/Mechanical-faults-ML" target="_blank" rel="noopener">
+          <p class="tag">Machine learning</p>
+          <h3>Mechanical fault classification for Industry 4.0</h3>
+          <p>A model that classifies mechanical faults from equipment sensor data to flag likely failures before they stop a line.</p>
+          <ul class="chips"><li>Python</li><li>scikit-learn</li><li>Sensor data</li></ul>
+          <span class="go">View repository <span class="arw" aria-hidden="true">&rarr;</span></span>
+        </a>
+
+        <a class="proj wash rise" href="https://github.com/Navyachilukoti/Aircraft-crack-detection" target="_blank" rel="noopener">
+          <p class="tag">Deep learning</p>
+          <h3>Fault and crack detection for aircraft engines</h3>
+          <p>Neural networks applied to engine inspection data, paired with digital-twin simulation for predictive diagnostics.</p>
+          <ul class="chips"><li>Neural networks</li><li>Digital twin</li><li>Python</li></ul>
+          <span class="go">View repository <span class="arw" aria-hidden="true">&rarr;</span></span>
+        </a>
+
+        <a class="proj wash rise" href="https://github.com/Navyachilukoti" target="_blank" rel="noopener">
+          <p class="tag">Deep learning</p>
+          <h3>Malicious activity detection for mobile edge security</h3>
+          <p>A GUI tool for training and evaluating deep neural networks on edge-threat datasets, covering upload, preprocessing and performance tracking.</p>
+          <ul class="chips"><li>TensorFlow</li><li>Python</li><li>Mobile security</li></ul>
+          <span class="go">See all repositories <span class="arw" aria-hidden="true">&rarr;</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TOOLKIT ============ -->
+  <section class="band" id="toolkit">
+    <div class="wrap">
+      <div class="shead rise">
+        <h2 class="stitle">Toolkit</h2>
+        <span class="rail" aria-hidden="true"></span>
+        <p class="idx">04</p>
+      </div>
+
+      <div class="kit rise">
+        <div class="kit-cell wash">
+          <h3>Data &amp; engineering</h3>
+          <p>Querying, moving and checking data</p>
+          <ul class="chips"><li>SQL</li><li>Python</li><li>PySpark</li><li>Snowflake</li><li>Data warehousing</li><li>ETL tool validation</li><li>ETL testing</li></ul>
+        </div>
+        <div class="kit-cell wash">
+          <h3>Tagging &amp; implementation</h3>
+          <p>Making sure the event exists in the first place</p>
+          <ul class="chips"><li>Tealium iQ</li><li>Google Tag Manager</li><li>Adobe Launch</li><li>Data layer design</li><li>Tracking specifications</li></ul>
+        </div>
+        <div class="kit-cell wash">
+          <h3>Analytics &amp; reporting</h3>
+          <p>Turning events into something readable</p>
+          <ul class="chips"><li>Google Analytics 4</li><li>Adobe Analytics</li><li>Tableau</li><li>Looker Studio</li><li>Dashboard maintenance</li></ul>
+        </div>
+        <div class="kit-cell wash">
+          <h3>AI-assisted delivery</h3>
+          <p>Faster drafts, still my review</p>
+          <ul class="chips"><li>Generative AI</li><li>Prompt engineering</li><li>GitHub Copilot</li><li>Microsoft Copilot</li></ul>
+        </div>
+        <div class="kit-cell wash">
+          <h3>Ways of working</h3>
+          <p>How the work actually ships</p>
+          <ul class="chips"><li>Agile</li><li>SDLC</li><li>Requirement documentation</li><li>Defect logging</li><li>Git &amp; GitHub</li></ul>
+        </div>
+        <div class="kit-cell wash">
+          <h3>Currently learning</h3>
+          <p>Where I'm putting my time next</p>
+          <ul class="chips"><li>Advanced Snowflake</li><li>PySpark at scale</li><li>Server-side tagging</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section class="band" id="education">
+    <div class="wrap">
+      <div class="shead rise">
+        <h2 class="stitle">Education &amp; certifications</h2>
+        <span class="rail" aria-hidden="true"></span>
+        <p class="idx">05</p>
+      </div>
+
+      <div class="edu-grid">
+        <ol class="edu rise">
+          <li class="wash">
+            <p class="deg">B.Tech, Computer Science Engineering</p>
+            <p class="place">St. Martin's Engineering College, Secunderabad, Telangana</p>
+            <p class="meta">2021 &ndash; 2025 &nbsp;&middot;&nbsp; CGPA <b>8.0</b></p>
+          </li>
+          <li class="wash">
+            <p class="deg">Intermediate (MPC)</p>
+            <p class="place">Narayana IIT Academy, Kukatpally, Telangana</p>
+            <p class="meta">2019 &ndash; 2021 &nbsp;&middot;&nbsp; <b>93%</b></p>
+          </li>
+          <li class="wash">
+            <p class="deg">SSC</p>
+            <p class="place">TVR Model High School, Jeedimetla, Telangana</p>
+            <p class="meta">CGPA <b>10</b></p>
+          </li>
+        </ol>
+
+        <div class="certs rise">
+          <div class="cert wash">
+            <p class="issuer">Tealium</p>
+            <p class="name">Tealium iQ Tag Management &dash; certified</p>
+          </div>
+          <div class="cert wash">
+            <p class="issuer">HarvardX</p>
+            <p class="name">CS50: Introduction to Computer Science</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="band" id="contact">
+    <div class="wrap">
+      <div class="shead rise">
+        <h2 class="stitle">Open to a conversation</h2>
+        <span class="rail" aria-hidden="true"></span>
+        <p class="idx">06</p>
+      </div>
+      <p class="body rise">If you're hiring for analytics implementation, data quality or reporting work &dash; or you just want a second pair of eyes on a tracking setup &dash; I'd like to hear about it.</p>
+
+      <div class="links rise">
+        <a class="wash" href="mailto:chilukotinavyasri@gmail.com">
+          <span><span class="lab">Email</span><span class="val">chilukotinavyasri@gmail.com</span></span>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="wash" href="https://www.linkedin.com/in/navya-sri-chilukoti" target="_blank" rel="noopener">
+          <span><span class="lab">LinkedIn</span><span class="val">navya-sri-chilukoti</span></span>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="wash" href="https://github.com/Navyachilukoti" target="_blank" rel="noopener">
+          <span><span class="lab">GitHub</span><span class="val">Navyachilukoti</span></span>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>Navya Sri Chilukoti &dash; Tagging &amp; Reporting Analyst</span>
+    <span id="stamp">Updated 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var start = new Date(2025, 10, 11);
+  var now = new Date();
+  var months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  if (now.getDate() < start.getDate()) months--;
+  var el = document.getElementById('tenure');
+  if (el && months >= 0) {
+    if (months < 12) {
+      el.textContent = months + (months === 1 ? ' month' : ' months');
+    } else {
+      var y = Math.floor(months / 12), m = months % 12;
+      el.textContent = (y + (y === 1 ? ' yr' : ' yrs')) + (m ? ' ' + m + ' mo' : '');
+    }
+  }
+  var stamp = document.getElementById('stamp');
+  if (stamp) stamp.textContent = 'Updated ' + now.toLocaleString('en-GB', { month: 'long', year: 'numeric' });
+})();
+
+(function () {
+  var bar = document.getElementById('meter');
+  if (!bar) return;
+  var tick = function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', tick, { passive: true });
+  window.addEventListener('resize', tick);
+  tick();
+})();
+
+(function () {
+  var items = document.querySelectorAll('.rise');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var i = Array.prototype.indexOf.call(items, e.target);
+        e.target.style.transitionDelay = Math.min(i % 5, 4) * 70 + 'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
